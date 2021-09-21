@@ -17,7 +17,13 @@
 
     <h1>Profile Page</h1>
     <div>username: {{user.username}}</div> <br>
+<<<<<<< HEAD
     <div>Name: {{user.first_name}}</div> <br>
+=======
+    {% if user.first_name != "" %}
+    <div>Name: {{user.first_name}}</div> <br>
+    {% endif %}
+>>>>>>> 0684c71 (ws to wss)
     <div>Total Messages sent: {{total_messages_sent}}</div> <br>
     {% comment %} <div>Total messages send in Public chat: {{total_messages_sent}}</div>  {% endcomment %}
     <br><br>

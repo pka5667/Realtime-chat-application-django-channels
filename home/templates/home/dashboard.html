@@ -28,7 +28,25 @@
         <input type="submit" value="submit">
     </form>
 
+<<<<<<< HEAD
     <a href="{% url 'chatRoom' %}">Go to Chat room</a>
 
 </body>
+=======
+    <a href="{% url 'chatRoom' %}">Go to Public Chat room</a>
+
+    <br><br>
+    <h2>User Search</h2>
+    <input id="search_id" type="text" />
+    <input id="search_btn" type="button" value='Send'>
+</body>
+
+<script>
+    document.getElementById('search_btn').onclick = function(e){
+        const username = document.getElementById('search_id').value;
+        window.location.href = '/user/' + username;
+    }
+</script>
+
+>>>>>>> 0684c71 (ws to wss)
 </html>

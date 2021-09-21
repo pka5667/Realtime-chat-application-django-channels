@@ -19,7 +19,11 @@
 
   <script>
     // Creating chat socket
+<<<<<<< HEAD
     const chatSocket = new WebSocket("ws://" + window.location.host + "/ws/chat/");
+=======
+    const chatSocket = new WebSocket("wss://" + window.location.host + "/ws/chat/");
+>>>>>>> 0684c71 (ws to wss)
 
     //on message send
     document.getElementById("send").onclick = function (e) {
