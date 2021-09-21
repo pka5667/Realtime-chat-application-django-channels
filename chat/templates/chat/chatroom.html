@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chat Room</title>
+  </head>
+
+  <body>
+    <div id="user-hello"></div>
+    <div id="chat-text">
+        {% for message in chat_messages %}
+            {{message.user}}: {{message.message}} <br>
+        {% endfor %}
+    </div>
+    <input id="input" type="text" />
+    <input id="send" type="button" value='Send'>
+  </body>
+
+  <script>
+    // Creating chat socket
+    const chatSocket = new WebSocket("ws://" + window.location.host + "/ws/chat/");
+
+    //on message send
+    document.getElementById("send").onclick = function (e) {
+      const messageDOM = document.getElementById("input");
+      const message = messageDOM.value;
+      chatSocket.send(
+        JSON.stringify({
+          message: message
+        })
+      );
+
+      messageDOM.value = "";
+    };
+
+
+    // on recieve message
+    chatSocket.onmessage = function (e) {
+      const data = JSON.parse(e.data);
+      document.getElementById("chat-text").innerHTML += data["sender"] + ':' + data["message"] + "</br>";
+    };
+  </script>
+</html>
