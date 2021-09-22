@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'accounts',
     'chat',
     'home',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -93,6 +94,8 @@ CHANNEL_LAYERS = {
         "BACKEND": "channels.layers.InMemoryChannelLayer"
     }
 }
+
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
 
 
 # Password validation

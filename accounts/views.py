@@ -1,9 +1,8 @@
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
-from .forms import RegistrationForm
+from .forms import RegistrationForm, loginForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
 
 # Create your views here.
 
@@ -27,7 +26,7 @@ def loginView(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('/')
     if request.method == 'POST':
-        fm = AuthenticationForm(request=request, data=request.POST)
+        fm = loginForm(request=request, data=request.POST)
 
         if fm.is_valid():
             user_name = fm.cleaned_data['username']
@@ -40,7 +39,7 @@ def loginView(request):
                 messages.success(request, 'Login Successful')
                 return HttpResponseRedirect('/')
     else:
-        fm = AuthenticationForm()
+        fm = loginForm()
     return render(request, 'accounts/login.html', {'form': fm})
 
 
